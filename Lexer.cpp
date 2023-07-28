@@ -19,9 +19,42 @@ void Lexer::readChar()
     readPosition++;
 }
 
+void Lexer::SkipWhitespace()
+{
+    while (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r')
+        readChar();
+}
+
+Token Lexer::AlphaDigitToken()
+{
+    if (isalpha(ch))
+    {
+        std::string literal = "";
+        while(isalpha(ch))
+        {
+            literal += ch;
+            readChar();
+        }
+        return Token(LookupIdent(literal), literal);;
+    }
+    else if(isdigit(ch))
+    {
+        std::string literal;
+        while(isdigit(ch))
+        {
+            literal += ch;
+            readChar();
+        }
+        return Token(INT, literal);
+    }
+    else
+        return Token(ILLEGAL, std::string(1, ch));
+}
+
 Token Lexer::NextToken()
 {
     auto token = Token();
+    SkipWhitespace();
     switch (ch)
     {
         case '=':
@@ -51,9 +84,16 @@ Token Lexer::NextToken()
         case 0:
             token = Token(EndOfFile, "");
             break;
-        default:
-            token = Token(ILLEGAL, std::string(1, ch));
+        default: 
+            return AlphaDigitToken();;
     }
     readChar();
     return token;
+}
+
+TokenType Lexer::LookupIdent(std::string ident)
+{
+    if (keywords.find(ident) != keywords.end())
+        return keywords[ident];
+    return IDENT;
 }

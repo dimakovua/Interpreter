@@ -35,6 +35,7 @@
 class Token
 {
 public:
+//Constructors
     Token(TokenType type, std::string literal);
     Token()
     {
@@ -42,12 +43,16 @@ public:
         literal = "";
     }
 
+//Getters and setters
     TokenType getTokenType() const { return type; }
 
 private:
     TokenType type;
     std::string literal;
 
+//Operators
 friend std::ostream& operator<< (std::ostream &out, const Token &token);
+friend bool operator== (const Token &t1, const Token &t2);
+friend bool operator!= (const Token &t1, const Token &t2);
 };
 

@@ -1,6 +1,24 @@
-cmake_minimum_required(VERSION 2.4)
+cmake_minimum_required(VERSION 3.0)
+project(Interpreter)
 
-project(lexer)
+# Set the C++ standard to C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(${PROJECT_SOURCE_DIR})
-add_executable(app main.cpp Lexer.cpp Token.cpp)
+# Add the source files to your project
+set(SOURCES
+    Lexer.cpp
+    Token.cpp
+    main.cpp
+)
+
+# Add header files to your project
+set(HEADERS
+    Lexer.h
+    Token.h
+    MyTests.h
+    Tests.h
+)
+
+# Create an executable for your project
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})

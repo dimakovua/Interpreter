@@ -16,8 +16,8 @@ set(SOURCES
 set(HEADERS
     Lexer.h
     Token.h
-    MyTests.h
-    Tests.h
+    UnitTests/MyTests.h
+    UnitTests/Tests.h
 )
 
 # Create an executable for your project

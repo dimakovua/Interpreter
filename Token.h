@@ -17,7 +17,14 @@
 //Operators
 #define ASSIGN "="
 #define PLUS "+"
-
+#define MINUS "-"
+#define BANG "!"
+#define ASTERISK "*"
+#define SLASH "/"
+#define LT "<"
+#define GT ">"
+#define EQ "=="
+#define NOT_EQ "!="
 //Delimiters
 #define COMMA ","
 #define SEMICOLON ";"
@@ -30,6 +37,11 @@
 //Keywords
 #define FUNCTION "FUNCTION"
 #define LET "LET"
+#define TRUE "TRUE"
+#define FALSE "FALSE"
+#define IF "IF"
+#define ELSE "ELSE"
+#define RETURN "RETURN"
 //----------------------------------------------------------------
 
 class Token

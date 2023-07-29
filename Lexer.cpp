@@ -9,6 +9,14 @@ Lexer::Lexer(std::string input) :
     readChar();
 }
 
+char Lexer::peekChar()
+{
+    if (readPosition >= input.length())
+        return 0;
+    else
+        return input[readPosition];
+}
+
 void Lexer::readChar()
 {
     if (readPosition >= input.length())
@@ -58,6 +66,12 @@ Token Lexer::NextToken()
     switch (ch)
     {
         case '=':
+            if (peekChar() == '=')
+            {
+                readChar();
+                token = Token(EQ, "==");
+                break;
+            }
             token = Token(ASSIGN, "=");
             break;
         case ';':
@@ -74,6 +88,30 @@ Token Lexer::NextToken()
             break;
         case '+':
             token = Token(PLUS, "+");
+            break;
+        case '-':
+            token = Token(MINUS, "-");
+            break;
+        case '!':
+            if (peekChar() == '=')
+            {
+                readChar();
+                token = Token(NOT_EQ, "!=");
+                break;
+            }
+            token = Token(BANG, "!");
+            break;
+        case '*':
+            token = Token(ASTERISK, "*");
+            break;
+        case '/':
+            token = Token(SLASH, "/");
+            break;
+        case '<':
+            token = Token(LT, "<");
+            break;
+        case '>':
+            token = Token(GT, ">");
             break;
         case '{':
             token = Token(LBRACE, "{");

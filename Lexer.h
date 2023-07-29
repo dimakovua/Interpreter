@@ -13,6 +13,7 @@ public:
     Token AlphaDigitToken(); // Check if lexeme is an identifier or integer
     TokenType LookupIdent(std::string ident); // Check if lexeme is a keyword
     void SkipWhitespace();
+    char peekChar();
 private:
     std::string input;
     int position;
@@ -20,6 +21,11 @@ private:
     char ch;
     std::unordered_map<std::string, TokenType> keywords = {
         {"fn", FUNCTION},
-        {"let", LET}
+        {"let", LET},
+        {"true", TRUE},
+        {"false", FALSE},
+        {"if", IF},
+        {"else", ELSE},
+        {"return", RETURN}
     };
 };

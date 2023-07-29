@@ -11,7 +11,10 @@ void TestLexer()
         "let add = fn(x, y) {"
         "    x + y;"
         "};"
-        "let result = add(five, ten);";
+        "let result = add(five, ten);"
+        "!-/*5;<>10"
+        "return true 5 else false 10 "
+        "10 == 10 if 10 != 9";
 
     Token expected_result[] = {
         Token(LET, "let"),
@@ -50,6 +53,28 @@ void TestLexer()
         Token(IDENT, "ten"),
         Token(RPAREN, ")"),
         Token(SEMICOLON, ";"),
+        Token(BANG, "!"),
+        Token(MINUS, "-"),
+        Token(SLASH, "/"),
+        Token(ASTERISK, "*"),
+        Token(INT, "5"),
+        Token(SEMICOLON, ";"),
+        Token(LT, "<"),
+        Token(GT, ">"),
+        Token(INT, "10"),
+        Token(RETURN, "return"),
+        Token(TRUE, "true"),
+        Token(INT, "5"),
+        Token(ELSE, "else"),
+        Token(FALSE, "false"),
+        Token(INT, "10"),
+        Token(INT, "10"),
+        Token(EQ, "=="),
+        Token(INT, "10"),
+        Token(IF, "if"),
+        Token(INT, "10"),
+        Token(NOT_EQ, "!="),
+        Token(INT, "9"),
         Token(EndOfFile, "")
     };
 
